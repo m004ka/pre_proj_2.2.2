@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: springbootproj2
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/server  # Укажи свое название БД
+    username: postgres  # Укажи свое имя пользователя
+    password: admin  # Укажи свой пароль
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+size:
+  max: 10
