@@ -62,13 +62,13 @@ public class CarServiceImpl implements CarService {
         if (count > maxCar) {
             return sortCars(getAllCar(), sortBy);
         } else {
-           return getCarQuantity(sortCars(carRepository.findAll(), sortBy),count);
+            return getCarQuantity(sortCars(carRepository.findAll(), sortBy), count);
         }
 
     }
 
-    private List<Car> getCarQuantity(List<Car> car, int count){
-       return car.stream().limit(count).collect(Collectors.toList());
+    private List<Car> getCarQuantity(List<Car> car, int count) {
+        return car.stream().limit(count).collect(Collectors.toList());
     }
 
     @Override
