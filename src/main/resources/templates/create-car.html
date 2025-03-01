@@ -9,18 +9,18 @@
 <form th:action="@{/cars/create}" th:object="${carDto}" method="post">
     <div class="mb-3">
         <label class="form-label">Марка</label>
-        <input type="text" class="form-control" th:field="*{car.brand}" required>
+        <input type="text" class="form-control" th:field="*{brand}">
     </div>
     <div class="mb-3">
         <label class="form-label">Модель</label>
-        <input type="text" class="form-control" th:field="*{car.model}" required>
+        <input type="text" class="form-control" th:field="*{model}">
     </div>
     <div class="mb-3">
         <label class="form-label">Год</label>
-        <input type="number" class="form-control" th:field="*{car.year}" required>
+        <input type="number" class="form-control" th:field="*{year}">
     </div>
-    <button type="submit" class="btn btn-primary">Добавить</button>
-    <a href="/cars" class="btn btn-secondary">Назад</a>
+    <button type="submit" class="btn btn-success">Сохранить</button>
 </form>
+<a href="/cars" class="btn btn-secondary mt-3">Назад</a>
 </body>
 </html>
