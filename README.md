@@ -1,4 +1,5 @@
-��# 2.2.1 
+2.2.2
+
 Обычный вывод машин без параметров 
 ![alt text](https://github.com/user-attachments/assets/0ec57c09-9bc8-4ddb-ace8-3e262fc4be4f)
 
