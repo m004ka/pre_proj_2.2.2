@@ -6,7 +6,6 @@
 </head>
 <body class="container mt-4">
 <h1>Список машин</h1>
-<a href="/cars/create" class="btn btn-success mb-3">Добавить машину</a>
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -20,6 +19,9 @@
         <td th:text="${car.brand}"></td>
         <td th:text="${car.model}"></td>
         <td th:text="${car.year}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(cars)}">
+        <td colspan="3" class="text-center text-muted">Нет данных</td>
     </tr>
     </tbody>
 </table>

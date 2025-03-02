@@ -17,9 +17,7 @@ spring:
       hibernate:
         format_sql=true:
 
-size:
-  max: 2
-
-sorting:
+car:
   enabled-fields: brand,year
+  max: 2
 
