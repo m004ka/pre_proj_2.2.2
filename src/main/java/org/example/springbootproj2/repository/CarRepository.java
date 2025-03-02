@@ -2,6 +2,7 @@ package org.example.springbootproj2.repository;
 
 import org.example.springbootproj2.model.Car;
 import org.springframework.data.domain.Limit;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +18,9 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<Car> findAll(Sort sort);
 
-    @Query(value = "SELECT * FROM Car LIMIT ?1", nativeQuery = true)
-    List<Car> findAllWithLimitAndSort(@Param("count") int count, Sort sort);
+    @Query(value = "SELECT * FROM Car", nativeQuery = true)
+    List<Car> findAllWithLimitAndSort(Pageable pageable);
+
+
 
 }

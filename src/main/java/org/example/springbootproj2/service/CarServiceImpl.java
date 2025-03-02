@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.springbootproj2.config.CarProperties;
 import org.example.springbootproj2.model.Car;
 import org.example.springbootproj2.repository.CarRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +51,8 @@ public class CarServiceImpl implements CarService {
         if (count > carProperties.getMax()) {
             return carRepository.findAll(sort);
         }
-
-        return carRepository.findAllWithLimitAndSort(count, sort);
+        Pageable pageable = PageRequest.of(0, count, Sort.by(sortBy));
+        return carRepository.findAllWithLimitAndSort(pageable);
     }
 
     @Override
