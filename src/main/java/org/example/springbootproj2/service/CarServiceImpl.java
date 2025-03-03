@@ -18,54 +18,28 @@ public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
     private final CarProperties carProperties;
 
-    public List<Car> getCarForParam(int count, String sortBy) {
-
+    public List<Car> getCar(int count, String sortBy) {
         if (sortBy != null && !carProperties.getEnabledFields().contains(sortBy)) {
             return List.of();
         }
 
-        if (count > 0 && sortBy != null) {
-            return getCarByQuantitySort(count, sortBy);
-        }
+        Sort sort;
 
         if (sortBy != null) {
-            return getCarBySort(sortBy);
+            sort = Sort.by(sortBy);
+        } else {
+            sort = Sort.unsorted();
         }
 
-        if (count > 0) {
-            return getCarByQuantity(count);
+        int limit;
+        if (count > 0 && count <= carProperties.getMax()) {
+            limit = count;
+        } else {
+            limit = Integer.MAX_VALUE;
         }
 
-        return getAllCar();
-    }
-
-    @Override
-    public List<Car> getAllCar() {
-        return carRepository.findAll();
-    }
-
-    @Override
-    public List<Car> getCarByQuantitySort(int count, String sortBy) {
-        Sort sort = Sort.by(sortBy).ascending();
-
-        if (count > carProperties.getMax()) {
-            return carRepository.findAll(sort);
-        }
-        Pageable pageable = PageRequest.of(0, count, Sort.by(sortBy));
-        return carRepository.findAllWithLimitAndSort(pageable);
-    }
-
-    @Override
-    public List<Car> getCarBySort(String sortBy) {
-        return carRepository.findAll(Sort.by(sortBy).ascending());
-    }
-
-    @Override
-    public List<Car> getCarByQuantity(int count) {
-        if (count > carProperties.getMax()) {
-            return getAllCar();
-        }
-
-        return carRepository.findCarsWithLimit(count);
+        Pageable pageable = PageRequest.of(0, limit, sort);
+        System.out.println(carRepository.findAll(pageable).getContent());
+        return carRepository.findAll(pageable).getContent();
     }
 }

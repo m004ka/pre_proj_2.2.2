@@ -22,6 +22,7 @@ public class CarController {
     public String getCars(@RequestParam(required = false) Integer count,
                           @RequestParam(required = false) String sortBy,
                           Model model) {
+
         if (count == null || count <= 0) {
             count = 0;
         }
@@ -29,7 +30,7 @@ public class CarController {
             sortBy = null;
         }
 
-        List<Car> cars = carService.getCarForParam(count, sortBy);
+        List<Car> cars = carService.getCar(count, sortBy);
 
         if (cars.isEmpty() && sortBy != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Сортировка по данному параметру заблокирована или не существует");
